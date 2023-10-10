@@ -17,9 +17,13 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Server="*res://server.gd"
+Constants="*res://constants.gd"
 Global="*res://global.gd"
+ServerPackets="*res://Network/server_packets.gd"
+ClientPackets="*res://Network/client_packets.gd"
 Nodes="*res://nodes.gd"
+Network="*res://Network/network.gd"
+Server="*res://server.gd"
 
 [rendering]
 
