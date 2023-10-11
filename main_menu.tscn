@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cxuay3sd5jxap"]
 
 [ext_resource type="FontFile" uid="uid://dn5th1hx1iecg" path="res://fonts/ThaleahFat.ttf" id="1_5liwj"]
-[ext_resource type="Script" path="res://Entrar.gd" id="2_uyhw4"]
+[ext_resource type="Script" path="res://main_menu.gd" id="1_fjdtd"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -10,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_fjdtd")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -23,9 +24,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -168.0
-offset_top = 136.0
+offset_top = 72.0
 offset_right = 168.0
-offset_bottom = 198.0
+offset_bottom = 134.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_5liwj")
 theme_override_font_sizes/font_size = 64
@@ -33,7 +34,7 @@ text = "Project Pog"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Entrar" type="Button" parent="."]
+[node name="btnLogin" type="Button" parent="." groups=["menu_buttons"]]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -48,4 +49,27 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 24
 text = "Entrar"
-script = ExtResource("2_uyhw4")
+
+[node name="txtUsername" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 71.0
+offset_top = 235.0
+offset_right = 335.0
+offset_bottom = 266.0
+placeholder_text = "Usuário"
+
+[node name="txtPassword" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 71.0
+offset_top = 281.0
+offset_right = 335.0
+offset_bottom = 312.0
+placeholder_text = "Senha"
+
+[node name="btnNewAccount" type="Button" parent="." groups=["menu_buttons"]]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 336.0
+offset_right = 287.0
+offset_bottom = 375.0
+text = "Criar nova conta"

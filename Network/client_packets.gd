@@ -5,7 +5,11 @@ extends Node
 
 func start():
 	get_tree().set_multiplayer(Network.multiplayer_api, self.get_path())
-	
+
+@rpc
+func TryCreateAccount(username: String, password: String):
+	pass # only executed on the server
+
 @rpc("unreliable")
 func update_transform(_direction, _position):
 	pass # only executed on the server

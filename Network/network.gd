@@ -11,8 +11,7 @@ func _ready():
 	multiplayer_api.connected_to_server.connect(_connected_to_server)
 	multiplayer_api.server_disconnected.connect(_server_disconnected)
 	multiplayer_api.connection_failed.connect(connection_failed)
-
-func join_server():
+	
 	var err = client.create_client(Constants.SERVER_ADDRESS, Constants.PORT)
 	if err != OK:
 		print("unable_to_connect")
@@ -27,13 +26,13 @@ func join_server():
 	multiplayer_api.multiplayer_peer = client
 	
 func connection_failed():
-	get_node("/root/MainMenu/Entrar").disabled = false
+#	get_node("/root/MainMenu/Entrar").disabled = false
 	print("Connection failed")
 	
 func _server_disconnected():
-	get_node("/root/MainMenu").show()
+#	get_node("/root/MainMenu").show()
 	print("Server disconnected")
 	
 func _connected_to_server():
-	get_node("/root/MainMenu").hide()
+#	get_node("/root/MainMenu").hide()
 	print("Connected to server")
