@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cbq0um3wk7dfk"]
+[gd_scene load_steps=26 format=3 uid="uid://cbq0um3wk7dfk"]
 
 [ext_resource type="Script" path="res://objects/player.gd" id="1_lvaao"]
 [ext_resource type="Texture2D" uid="uid://cp5a456t3ceg2" path="res://assets/characters/player.png" id="3_a7j6c"]
@@ -439,6 +439,10 @@ states/idle/position = Vector2(343, 103)
 states/walk/node = SubResource("AnimationNodeBlendSpace2D_3p8qs")
 states/walk/position = Vector2(343, 167)
 
+[sub_resource type="SystemFont" id="SystemFont_1t07b"]
+font_names = PackedStringArray("Courier New")
+font_weight = 700
+
 [node name="player" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree") groups=["players"]]
 position = Vector2(98, 104)
 script = ExtResource("1_lvaao")
@@ -473,4 +477,26 @@ active = true
 parameters/idle/blend_position = Vector2(0, 0)
 parameters/walk/blend_position = Vector2(0, 0)
 
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -32.0
+offset_bottom = -32.0
+
+[node name="PlayerName" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.5
+offset_right = 60.5
+offset_bottom = 18.0
+grow_horizontal = 2
+theme_override_fonts/font = SubResource("SystemFont_1t07b")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+
+[connection signal="renamed" from="." to="." method="_on_renamed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

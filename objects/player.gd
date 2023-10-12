@@ -50,3 +50,7 @@ func _on_timer_timeout():
 	pass
 #	ClientPackets.update_transform.rpc_id(1, Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down"), global_position)
 	
+
+
+func _on_renamed():
+	$Control/PlayerName.text = self.name
