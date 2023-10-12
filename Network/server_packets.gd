@@ -8,6 +8,34 @@ var otherplayer = preload("res://objects/otherplayer.tscn")
 
 func start():
 	get_tree().set_multiplayer(Network.multiplayer_api, self.get_path())
+
+@rpc
+func PlayerDataPacket(player_index, player_data):
+	if player_index < 0 or player_index > Constants.MAX_PLAYERS:
+		return
+
+	Global.SetPlayerData(player_index, player_data)
+	
+	# TODO: ver se o node desse player ja ta instanciado
+	var p = player
+	var player_instance = Global.instance_node(p, Nodes, Vector2(105, 105))
+	player_instance.name = Global.Players[player_index].username
+	
+@rpc
+func SyncPlayers(players):
+	Global.SetPlayers(players)
+	
+	for i in range(Global.Players.size()):
+		if Global.Players[i] != null:
+			var p = player
+			var player_instance = Global.instance_node(p, Nodes, Vector2(100, 100))
+			player_instance.name = Global.Players[i].username
+	
+	get_node("/root/MainMenu").hide()
+
+@rpc("authority")
+func LoginOk(index):
+	Global.MyIndex = index
 	
 @rpc("authority")
 func AlertMsg(msg):

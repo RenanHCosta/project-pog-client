@@ -18,6 +18,9 @@ func _physics_process(_delta):
 	move_and_slide()
 
 func _move() -> void:
+	if !self.name == Global.Players[Global.MyIndex].username:
+		return
+		
 	var _direction: Vector2 = Vector2(
 		Input.get_axis("move_left", "move_right"),
 		Input.get_axis("move_up", "move_down")
