@@ -9,6 +9,10 @@ func start():
 @rpc
 func TryCreateAccount(username: String, password: String):
 	pass # only executed on the server
+	
+@rpc
+func TryLogin(username: String, password: String):
+	pass # only executed on the Server
 
 @rpc("unreliable")
 func update_transform(_direction, _position):

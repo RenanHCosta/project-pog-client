@@ -1,7 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxuay3sd5jxap"]
+[gd_scene load_steps=6 format=3 uid="uid://cxuay3sd5jxap"]
 
 [ext_resource type="FontFile" uid="uid://dn5th1hx1iecg" path="res://fonts/ThaleahFat.ttf" id="1_5liwj"]
 [ext_resource type="Script" path="res://main_menu.gd" id="1_fjdtd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s7y14"]
+bg_color = Color(0.803922, 0, 0.129412, 1)
+
+[sub_resource type="Theme" id="Theme_t0otx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eqauv"]
+bg_color = Color(0.160784, 0.352941, 0.819608, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+shadow_size = 5
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -13,63 +28,132 @@ grow_vertical = 2
 script = ExtResource("1_fjdtd")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 649.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(1, 0.309804, 0.309804, 1)
 
-[node name="Label" type="Label" parent="."]
+[node name="Title" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -168.0
-offset_top = 72.0
-offset_right = 168.0
-offset_bottom = 134.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 18.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_5liwj")
-theme_override_font_sizes/font_size = 64
 text = "Project Pog"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="btnLogin" type="Button" parent="." groups=["menu_buttons"]]
+[node name="input_wrapper" type="Control" parent="."]
+custom_minimum_size = Vector2(200, 150)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -140.5
-offset_top = -34.0
-offset_right = 140.5
-offset_bottom = 34.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 24
+
+[node name="Panel" type="Panel" parent="input_wrapper"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s7y14")
+
+[node name="btnLogin" type="Button" parent="input_wrapper" groups=["menu_buttons"]]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -67.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 18
 text = "Entrar"
 
-[node name="txtUsername" type="LineEdit" parent="."]
-layout_mode = 0
-offset_left = 71.0
-offset_top = 235.0
-offset_right = 335.0
-offset_bottom = 266.0
+[node name="txtUsername" type="LineEdit" parent="input_wrapper"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
 placeholder_text = "Usuário"
 
-[node name="txtPassword" type="LineEdit" parent="."]
-layout_mode = 0
-offset_left = 71.0
-offset_top = 281.0
-offset_right = 335.0
-offset_bottom = 312.0
+[node name="txtPassword" type="LineEdit" parent="input_wrapper"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 32.0
+offset_bottom = 63.0
+grow_horizontal = 2
 placeholder_text = "Senha"
+secret = true
 
-[node name="btnNewAccount" type="Button" parent="." groups=["menu_buttons"]]
-layout_mode = 0
-offset_left = 120.0
-offset_top = 336.0
-offset_right = 287.0
-offset_bottom = 375.0
+[node name="btnNewAccount" type="Button" parent="input_wrapper" groups=["menu_buttons"]]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+grow_horizontal = 2
+grow_vertical = 0
 text = "Criar nova conta"
+
+[node name="popupAlert" type="Control" parent="."]
+visible = false
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_t0otx")
+
+[node name="Panel" type="Panel" parent="popupAlert"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eqauv")
+
+[node name="lblAlertMsg" type="RichTextLabel" parent="popupAlert"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -123.0
+offset_top = 10.0
+offset_right = 123.0
+offset_bottom = 137.0
+grow_horizontal = 2
+fit_content = true
+
+[node name="btnAlertOk" type="Button" parent="popupAlert"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -122.5
+offset_top = -42.04
+offset_right = 122.5
+offset_bottom = -11.04
+grow_horizontal = 2
+grow_vertical = 0
+text = "Ok"

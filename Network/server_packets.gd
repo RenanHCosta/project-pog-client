@@ -10,6 +10,11 @@ func start():
 	get_tree().set_multiplayer(Network.multiplayer_api, self.get_path())
 	
 @rpc("authority")
+func AlertMsg(msg):
+	get_tree().current_scene.get_node("popupAlert").get_node("lblAlertMsg").text = msg
+	get_tree().current_scene.get_node("popupAlert").visible = true
+	
+@rpc("authority")
 func instance_player(id, location):
 	var p = player if Network.multiplayer_api.get_unique_id() == id else otherplayer
 	var player_instance = Global.instance_node(p, Nodes, location)
