@@ -6,6 +6,10 @@ extends Node
 func start():
 	get_tree().set_multiplayer(Network.multiplayer_api, self.get_path())
 
+@rpc 
+func MovementInfo(_username, _direction, _velocity):
+	pass # only executed on the server
+	
 @rpc
 func TryCreateAccount(username: String, password: String):
 	pass # only executed on the server

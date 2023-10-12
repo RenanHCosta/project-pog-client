@@ -443,8 +443,9 @@ states/walk/position = Vector2(343, 167)
 font_names = PackedStringArray("Courier New")
 font_weight = 700
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree") groups=["players"]]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree") groups=["Players"]]
 position = Vector2(98, 104)
+collision_layer = 2
 script = ExtResource("1_lvaao")
 animation_tree = NodePath("AnimationTree")
 metadata/_edit_vertical_guides_ = []

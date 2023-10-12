@@ -16,6 +16,13 @@ func _physics_process(_delta):
 	_move()
 	_animate()
 	move_and_slide()
+	
+func _move_other(_direction, _velocity) -> void:
+	if _direction != Vector2.ZERO:
+		animation_tree["parameters/idle/blend_position"] = _direction
+		animation_tree["parameters/walk/blend_position"] = _direction
+		
+	velocity = _velocity
 
 func _move() -> void:
 	if !self.name == Global.Players[Global.MyIndex].username:
@@ -38,6 +45,7 @@ func _move() -> void:
 	velocity.y = lerp(velocity.y, _direction.normalized().y * speed, friction)
 	
 	velocity = _direction.normalized() * speed
+#	ClientPackets.MovementInfo.rpc_id(1, velocity)
 
 func _animate() -> void:
 	if velocity.length() > 10:
@@ -47,10 +55,12 @@ func _animate() -> void:
 	state_machine.travel("idle")
 	
 func _on_timer_timeout():
-	pass
-#	ClientPackets.update_transform.rpc_id(1, Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down"), global_position)
-	
-
+	if self.name == Global.Players[Global.MyIndex].username:
+		var _direction: Vector2 = Vector2(
+			Input.get_axis("move_left", "move_right"),
+			Input.get_axis("move_up", "move_down")
+		)
+		ClientPackets.MovementInfo.rpc_id(1, self.name, _direction, velocity)
 
 func _on_renamed():
 	$Control/PlayerName.text = self.name

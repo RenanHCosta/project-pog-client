@@ -10,6 +10,10 @@ func start():
 	get_tree().set_multiplayer(Network.multiplayer_api, self.get_path())
 
 @rpc
+func ProcessMovement(username, direction, velocity):
+	Nodes.get_node(str(username))._move_other(direction, velocity)
+
+@rpc
 func PlayerDataPacket(player_index, player_data):
 	if player_index < 0 or player_index > Constants.MAX_PLAYERS:
 		return
@@ -60,6 +64,6 @@ func update_player_transform(player_id, direction, position):
 			player_node.update_transform(direction, position)
 
 @rpc("authority")
-func delete_obj(id):
-	if Nodes.has_node(str(id)):
-		Nodes.get_node(str(id)).queue_free()
+func delete_obj(username):
+	if Nodes.has_node(str(username)):
+		Nodes.get_node(str(username)).queue_free()
