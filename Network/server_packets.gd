@@ -22,7 +22,7 @@ func PlayerDataPacket(player_index, player_data):
 	
 	# TODO: ver se o node desse player ja ta instanciado
 	var p = player
-	var player_instance = Global.instance_node(p, Nodes, Vector2(105, 105))
+	var player_instance = Global.instance_node(p, Nodes, Vector2(100, 100))
 	player_instance.name = Global.Players[player_index].username
 	
 @rpc
