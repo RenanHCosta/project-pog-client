@@ -4,7 +4,6 @@ var client = ENetMultiplayerPeer.new()
 var multiplayer_api : MultiplayerAPI
 
 var player = preload("res://objects/player.tscn")
-var otherplayer = preload("res://objects/otherplayer.tscn")
 
 func _ready():
 	multiplayer_api = MultiplayerAPI.create_default_interface()	

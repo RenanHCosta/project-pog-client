@@ -4,7 +4,6 @@ extends Node
 # FUNCTIONS THAT CLIENT RECEIVES FROM SERVER
 
 var player = preload("res://objects/player.tscn")
-var otherplayer = preload("res://objects/otherplayer.tscn")
 
 func start():
 	get_tree().set_multiplayer(Network.multiplayer_api, self.get_path())
@@ -22,7 +21,7 @@ func PlayerDataPacket(player_index, player_data):
 	
 	# TODO: ver se o node desse player ja ta instanciado
 	var p = player
-	var player_instance = Global.instance_node(p, Nodes, Vector2(100, 100))
+	var player_instance = Global.instance_node(p, Nodes, Vector2(Global.Players[player_index].location.x, Global.Players[player_index].location.y))
 	player_instance.name = Global.Players[player_index].username
 	
 @rpc
@@ -32,7 +31,7 @@ func SyncPlayers(players):
 	for i in range(Global.Players.size()):
 		if Global.Players[i] != null:
 			var p = player
-			var player_instance = Global.instance_node(p, Nodes, Vector2(100, 100))
+			var player_instance = Global.instance_node(p, Nodes, Vector2(Global.Players[i].location.x, Global.Players[i].location.y))
 			player_instance.name = Global.Players[i].username
 	
 	get_node("/root/MainMenu").hide()
@@ -45,16 +44,6 @@ func LoginOk(index):
 func AlertMsg(msg):
 	get_tree().current_scene.get_node("popupAlert").get_node("lblAlertMsg").text = msg
 	get_tree().current_scene.get_node("popupAlert").visible = true
-	
-@rpc("authority")
-func instance_player(id, location):
-	var p = player if Network.multiplayer_api.get_unique_id() == id else otherplayer
-	var player_instance = Global.instance_node(p, Nodes, location)
-	player_instance.name = str(id)
-	if Network.multiplayer_api.get_unique_id() == id:
-		for i in Network.multiplayer_api.get_peers():
-			if i != 1:
-				instance_player(i, location)
 
 @rpc("authority")
 func update_player_transform(player_id, direction, position):
