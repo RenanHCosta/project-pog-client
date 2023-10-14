@@ -7,6 +7,10 @@ func start():
 	get_tree().set_multiplayer(Network.multiplayer_api, self.get_path())
 
 @rpc 
+func AttackInfo(_index, _username, _is_attacking):
+	pass # only executed on the server
+	
+@rpc 
 func MovementInfo(_index, _username, _direction, _velocity, _position):
 	pass # only executed on the server
 	

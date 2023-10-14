@@ -9,6 +9,10 @@ func start():
 	get_tree().set_multiplayer(Network.multiplayer_api, self.get_path())
 
 @rpc
+func ProcessAttack(username, is_attacking):
+	Nodes.get_node(str(username))._attack(is_attacking)
+
+@rpc
 func ProcessMovement(username, direction, velocity):
 	Nodes.get_node(str(username))._move_other(direction, velocity)
 
