@@ -3,7 +3,7 @@ extends Node
 var client = ENetMultiplayerPeer.new()
 var multiplayer_api : MultiplayerAPI
 
-var player = preload("res://objects/player.tscn")
+var player = preload("res://Scenes/entities/player/player.tscn")
 
 func _ready():
 	multiplayer_api = MultiplayerAPI.create_default_interface()	

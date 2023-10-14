@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://cesiucaudfqkp"]
+
+[ext_resource type="Script" path="res://Scenes/world/nodes.gd" id="1_3hej8"]
+
+[node name="world" type="Node2D"]
+script = ExtResource("1_3hej8")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(150, 123)
+polygon = PackedVector2Array(1, 2, 74, 112, 130, 37)
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+position = Vector2(226, 439)
+polygon = PackedVector2Array(91, -66, 74, 112, 130, 37)
+
+[node name="Polygon2D3" type="Polygon2D" parent="."]
+position = Vector2(679, 354)
+polygon = PackedVector2Array(1, 2, 74, 112, 84, -94)
+
+[node name="Polygon2D4" type="Polygon2D" parent="."]
+position = Vector2(771, 776)
+polygon = PackedVector2Array(1, 2, 74, 112, 244, 0)
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

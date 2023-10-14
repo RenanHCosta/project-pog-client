@@ -11,19 +11,18 @@ config_version=5
 [application]
 
 config/name="ProjectPogClient"
-run/main_scene="res://main_menu.tscn"
+run/main_scene="res://Scenes/ui/main_menu.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Constants="*res://constants.gd"
-Global="*res://global.gd"
+Constants="*res://Scripts/constants.gd"
+Global="*res://Scripts/global.gd"
 ServerPackets="*res://Network/server_packets.gd"
 ClientPackets="*res://Network/client_packets.gd"
-Nodes="*res://nodes.gd"
+Nodes="*res://Scenes/world/nodes.gd"
 Network="*res://Network/network.gd"
-Server="*res://server.gd"
 
 [display]
 
@@ -58,6 +57,16 @@ move_down={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"key_label":0,"unicode":115,"echo":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194322,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
+zoom_in={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":8,"position":Vector2(80, 19),"global_position":Vector2(84, 62),"factor":1.0,"button_index":4,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+zoom_out={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":16,"position":Vector2(135, 22),"global_position":Vector2(139, 65),"factor":1.0,"button_index":5,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
 
