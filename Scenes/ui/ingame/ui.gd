@@ -24,9 +24,8 @@ func _input(event):
 func _process(delta):
 	pass
 
-func _on_txt_msg_text_submitted(new_text):
+func _on_txt_msg_text_submitted(msg):
 	if Global.inChat:
-		var msg = msg_line_edit.text
 		if !msg.is_empty():
 			ClientPackets.SendMessage.rpc_id(1, Global.MyIndex, Constants.MessageTypes.WorldMessage, msg)
 			msg_line_edit.text = ""

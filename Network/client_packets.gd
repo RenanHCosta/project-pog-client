@@ -7,11 +7,15 @@ func start():
 	get_tree().set_multiplayer(Network.multiplayer_api, self.get_path())
 
 @rpc 
-func SendMessage(_player_index, _message_type: Constants.MessageTypes, msg: String):
+func SendMessage(_player_index, _message_type: Constants.MessageTypes, _msg: String):
 	pass # only executed on the server
 
 @rpc
 func Logout(_index):
+	pass # only executed on the server
+
+@rpc 
+func AttackInfo(_index, _username, _is_attacking):
 	pass # only executed on the server
 	
 @rpc 

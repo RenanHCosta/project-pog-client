@@ -11,10 +11,14 @@ func start():
 @rpc
 func ChatMessage(username, msg):
 	Nodes.AddMessage(username + ": " + msg)
+
+@rpc
+func ProcessAttack(username, is_attacking):
+	Nodes.get_node(str(username))._attack(is_attacking)
 	
 @rpc
-func ProcessMovement(username, direction, velocity):
-	Nodes.get_node(str(username))._move_other(direction, velocity)
+func ProcessMovement(username, direction, velocity, position):
+	Nodes.get_node(str(username))._move_other(direction, velocity, position)
 
 @rpc
 func PlayerDataPacket(player_index, player_data):
