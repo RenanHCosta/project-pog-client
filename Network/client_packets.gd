@@ -7,6 +7,14 @@ func start():
 	get_tree().set_multiplayer(Network.multiplayer_api, self.get_path())
 
 @rpc 
+func SendMessage(_player_index, _message_type: Constants.MessageTypes, _msg: String):
+	pass # only executed on the server
+
+@rpc
+func Logout(_index):
+	pass # only executed on the server
+
+@rpc 
 func AttackInfo(_index, _username, _is_attacking):
 	pass # only executed on the server
 	
@@ -15,11 +23,11 @@ func MovementInfo(_index, _username, _direction, _velocity, _position):
 	pass # only executed on the server
 	
 @rpc
-func TryCreateAccount(username: String, password: String):
+func TryCreateAccount(_username: String, _password: String):
 	pass # only executed on the server
 	
 @rpc
-func TryLogin(username: String, password: String):
+func TryLogin(_username: String, _password: String):
 	pass # only executed on the Server
 
 @rpc("unreliable")

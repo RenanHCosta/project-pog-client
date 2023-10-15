@@ -3,6 +3,8 @@ extends Node
 var MyIndex: int = 0
 var Players = []
 
+var inChat = false
+
 func instance_node(node: PackedScene, parent, location):
 	var node_instance = node.instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE)
 	node_instance.global_position = location

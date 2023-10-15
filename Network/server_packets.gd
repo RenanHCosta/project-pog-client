@@ -3,18 +3,22 @@ extends Node
 # CONTAINS FUNCTIONS RELATIVE TO SERVER PACKETS
 # FUNCTIONS THAT CLIENT RECEIVES FROM SERVER
 
-var player = preload("res://objects/player.tscn")
+var player = preload("res://Scenes/entities/player/player.tscn")
 
 func start():
 	get_tree().set_multiplayer(Network.multiplayer_api, self.get_path())
 
 @rpc
-func ProcessAttack(username, is_attacking):
-	Nodes.get_node(str(username))._attack(is_attacking)
+func ChatMessage(username, msg):
+	Nodes.AddMessage(username + ": " + msg)
 
 @rpc
-func ProcessMovement(username, direction, velocity):
-	Nodes.get_node(str(username))._move_other(direction, velocity)
+func ProcessAttack(username, is_attacking):
+	Nodes.get_node(str(username))._attack(is_attacking)
+	
+@rpc
+func ProcessMovement(username, direction, velocity, position):
+	Nodes.get_node(str(username))._move_other(direction, velocity, position)
 
 @rpc
 func PlayerDataPacket(player_index, player_data):
@@ -37,12 +41,15 @@ func SyncPlayers(players):
 			var p = player
 			var player_instance = Global.instance_node(p, Nodes, Vector2(Global.Players[i].location.x, Global.Players[i].location.y))
 			player_instance.name = Global.Players[i].username
-	
-	get_node("/root/MainMenu").hide()
+			
+	Nodes.add_child(Nodes.UserInterface.instantiate())	
 
 @rpc("authority")
 func LoginOk(index):
 	Global.MyIndex = index
+	Nodes.UserInterface = load("res://Scenes/ui/ingame/ui.tscn")
+	get_tree().change_scene_to_file("res://Scenes/world/world.tscn")
+	
 	
 @rpc("authority")
 func AlertMsg(msg):
