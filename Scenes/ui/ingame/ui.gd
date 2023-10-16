@@ -27,7 +27,7 @@ func _process(delta):
 func _on_txt_msg_text_submitted(msg):
 	if Global.inChat:
 		if !msg.is_empty():
-			ClientPackets.SendMessage.rpc_id(1, Global.MyIndex, Constants.MessageTypes.WorldMessage, msg)
+			ClientPackets.SendMessage.rpc_id(1, Global.MyIndex, Constants.MessageTypes.NearbyMessage, msg)
 			msg_line_edit.text = ""
 			
 		msg_line_edit.release_focus()

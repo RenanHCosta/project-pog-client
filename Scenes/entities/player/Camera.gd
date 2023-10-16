@@ -1,7 +1,7 @@
 extends Camera2D
 
 # Set the minimum and maximum zoom levels
-var min_zoom = 0.5
+var min_zoom = 1.0
 var max_zoom = 1.5
 
 # Called when the node enters the scene tree for the first time.

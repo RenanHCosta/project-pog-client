@@ -15,7 +15,11 @@ var my_direction: Vector2
 
 func _ready() -> void:
 	state_machine = animation_tree["parameters/playback"]
-
+	$Control/PlayerName.text = self.name
+	
+	if self.name == Global.Players[Global.MyIndex].username:
+		$Camera.enabled = true
+			
 func _physics_process(_delta):
 	_attack_input()
 	_animate()
@@ -97,11 +101,6 @@ func _on_timer_timeout():
 			Input.get_axis("move_up", "move_down")
 		)
 		ClientPackets.MovementInfo.rpc_id(1, Global.MyIndex, self.name, my_direction, velocity, global_position)
-
-func _on_renamed():
-	$Control/PlayerName.text = self.name
-	if self.name == Global.Players[Global.MyIndex].username:
-		$Camera.enabled = true
 
 func _on_animation_tree_animation_finished(anim_name : String):
 	if anim_name.begins_with("attack_"):

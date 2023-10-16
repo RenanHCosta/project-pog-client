@@ -21,7 +21,6 @@ Constants="*res://Scripts/constants.gd"
 Global="*res://Scripts/global.gd"
 ServerPackets="*res://Network/server_packets.gd"
 ClientPackets="*res://Network/client_packets.gd"
-Nodes="*res://Scenes/world/nodes.gd"
 Network="*res://Network/network.gd"
 
 [display]
